@@ -1,0 +1,14 @@
+[class*='col-'] {
+    text-align: center;
+    align-content: center;
+    color: blue;
+    background-color: red;
+}
+
+* {
+    background-color: purple;
+}
+
+h1{
+    font-size: 200px;
+}
