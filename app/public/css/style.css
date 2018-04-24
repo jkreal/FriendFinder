@@ -1,0 +1,60 @@
+[class*='col-'] {
+    text-align: center;
+    align-content: center;
+    color: blue;
+}
+
+* {
+    font-family: 'Muli', sans-serif;
+}
+
+h1{
+    font-size: 200px;
+}
+
+.jumbotron {
+    background-color: lightcyan;
+}
+
+.header-row {
+
+}
+
+.btn-column {
+    margin-top: 14em;
+}
+
+.btn {
+    width: 20em;
+    font-size: 2em;
+}
+
+.container {
+    align-content: center;
+    margin-left: 33%;
+}
+
+.match-panel {
+    height: auto;
+    width: 50%;
+    align-content: center;
+}
+
+.question {
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
+    height: 20px;
+    height: auto;
+}
+
+.questions {
+    height: auto;
+}
+
+/*1440p for my 2K friends*/
+@media screen and (min-width: 1399px) {
+    .jumbotron {
+        
+    }
+}

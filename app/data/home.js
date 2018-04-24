@@ -1,0 +1,1 @@
+$('#match-btn').text('Match now!');

@@ -12,9 +12,9 @@ var PORT = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + "/client"));
-app.use(express.static(__dirname + "/public"));
 
+app.use('/static', express.static('app/public'));
+app.use('/data', express.static('app/data'));
 
 app.listen(PORT, function() {
     console.log("Server listening on port " + PORT);
