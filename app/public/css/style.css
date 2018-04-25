@@ -52,6 +52,19 @@ h1{
     height: auto;
 }
 
+.answer-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    align-content: center;
+    text-align: center;
+}
+
+.answer-btns label {
+     display: none 
+}
+
 /*1440p for my 2K friends*/
 @media screen and (min-width: 1399px) {
     .jumbotron {
