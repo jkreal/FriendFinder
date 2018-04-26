@@ -1,3 +1,14 @@
+var questions = ['How likely is it for you to be romantically involved with a food item someday (or right now!)?'
+    , 'Which number is the coolest'
+    , 'On a scale of 1 to 7, how would you rate the hair on your chinny-chin-chin?'
+    , 'Do you prefer larger numbers or smaller numbers?'
+    , 'How many days of the week do you shower?'
+    , 'Which number is closer to negative infinity?'
+    , 'How would you rate the amount of pain you are in right now?'
+    , 'How many feet tall are you, rounding to the nearest whole number?'
+    , 'Use the number line to describe your love for country "music".'
+    , 'How many cents under would you let a customer get away with while paying for something?']
+
 $(document).ready(function () {
     //do things when ready
     $('.match-panel').empty();
@@ -11,16 +22,41 @@ $(document).ready(function () {
 
 $(document).on("click", "#survey-btn", function () {
     event.preventDefault();
-    if(checkChecked()) {
+    if (checkChecked()) {
         post(checkChecked());
     } else {
-        //alert goes here
+        alert('You must answer every question!');
     }
 });
 
 function post(scores) {
-    console.log(scores);
-    //post api
+    var data = {
+        scores: JSON.stringify(scores)
+    }
+
+    $.post("/api/friends/match", data, function (res) {
+        displayMatch(JSON.parse(res));
+    });
+}
+
+function displayMatch(person) {
+    $('.match-panel').empty();
+    $('#survey-btn').hide();
+
+    var img = $('<img>');
+    img.attr('src', person.img);
+    img.css('width', '20em');
+    img.css('height', '20em');
+
+    var text = $('<h4>');
+    $(text).text('You matched with...');
+
+    var name = $('<h2>');
+    name.text(person.name);
+
+    $('.match-panel').append(img);
+    $('.match-panel').append(text);
+    $('.match-panel').append(name);
 }
 
 function checkChecked() {
@@ -42,7 +78,7 @@ function checkChecked() {
 
 };
 
-function addQuestion(row, header) {
+function addQuestion(row, header, question) {
 
     var parent = $('<div>');
     $(parent).attr('class', 'panel panel-info' + ' question-box-' + row);
@@ -52,7 +88,7 @@ function addQuestion(row, header) {
     $(child).text(header);
 
     var text = $('<p>');
-    $(text).text('This is the question text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo a vel nostrum itaque at quod accusantium accusamus deleniti quas porro, obcaecati cumque! Eos necessitatibus optio reprehenderit recusandae vero aliquam facere');
+    $(text).text(question);
 
     $(parent).append(child);
     $(parent).append(text);
@@ -90,6 +126,6 @@ function addQuestion(row, header) {
 
 function appendQuestions() {
     for (var i = 1; i < 11; ++i) {
-        addQuestion(i, 'Question ' + i);
+        addQuestion(i, 'Question ' + i, questions[i-1]);
     }
 }
